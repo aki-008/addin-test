@@ -16,7 +16,7 @@ Office.onReady((info) => {
     }
 
     // Attach event listeners
-    document.getElementById("run").onclick = run; // [cite: 60]
+    document.getElementById("run").onclick = run;
     document.getElementById("login-btn").onclick = handleLogin;
     document.getElementById("logout-btn").onclick = handleLogout;
   }
@@ -28,8 +28,37 @@ function showLoginBody() {
 }
 
 function showAppBody() {
-  document.getElementById("login-body").style.display = "none";
-  document.getElementById("app-body").style.display = "flex";
+  document.getElementById("login-body").style.display;
+  document.getElementById("app-body").style.display;
+
+  // Fetch and display the user's profile when the page loads
+  loadUserProfile();
+}
+
+async function loadUserProfile() {
+  const token = localStorage.getItem("accessToken");
+  if (!token) return;
+
+  try {
+    const response = await fetch("http://localhost:8000/api/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      // Inject the username into the HTML header
+      document.getElementById("user-welcome-header").innerText = `Welcome, ${data.username}!`;
+    } else {
+      // If the token is invalid or expired, log them out
+      handleLogout();
+    }
+  } catch (error) {
+    console.error("Failed to load user profile:", error);
+    document.getElementById("user-welcome-header").innerText = "Welcome!";
+  }
 }
 
 async function handleLogin() {
@@ -88,7 +117,7 @@ export async function run() {
       const response = await fetch("http://localhost:8000/api/run", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`, // Inject the JWT here
+          Authorization: `Bearer ${token}`, // Inject the JWT here [cite: 84]
         },
       });
 

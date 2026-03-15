@@ -70,3 +70,8 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
 def protected_run_action(current_user: models.User = Depends(get_current_user)):
     # This route is protected. Only logged-in users with a valid token can hit it.
     return {"message": f"Hello {current_user.username}, the backend action was successful!"}
+
+@app.get("/api/me")
+def get_user_profile(current_user: models.User = Depends(get_current_user)):
+    # This securely returns the username of the person who owns the token
+    return {"username": current_user.username}

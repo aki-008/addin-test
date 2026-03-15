@@ -16,15 +16,19 @@ test_password = "password123"
 # Check if user already exists
 existing_user = db.query(models.User).filter(models.User.username == test_username).first()
 
+# Hash the password using our new Argon2 setup
+hashed_pw = auth.get_password_hash(test_password)
+
 if not existing_user:
-    # Hash the password and create the user
-    hashed_pw = auth.get_password_hash(test_password)
+    # Create the user
     new_user = models.User(username=test_username, hashed_password=hashed_pw)
-    
     db.add(new_user)
-    db.commit()
     print(f"User '{test_username}' created successfully!")
 else:
-    print(f"User '{test_username}' already exists.")
+    # UPDATE the existing user's password to the new hash
+    existing_user.hashed_password = hashed_pw
+    print(f"User '{test_username}' already existed. Password updated to the new Argon2 hash!")
 
+# Commit the changes to the database
+db.commit()
 db.close()
