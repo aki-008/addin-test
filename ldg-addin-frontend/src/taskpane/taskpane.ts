@@ -28,8 +28,11 @@ function showLoginBody() {
 }
 
 function showAppBody() {
-  document.getElementById("login-body").style.display;
-  document.getElementById("app-body").style.display;
+  // Hide the login screen
+  document.getElementById("login-body").style.display = "none";
+
+  // Show the main welcome screen
+  document.getElementById("app-body").style.display = "flex";
 
   // Fetch and display the user's profile when the page loads
   loadUserProfile();
@@ -117,7 +120,7 @@ export async function run() {
       const response = await fetch("http://localhost:8000/api/run", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`, // Inject the JWT here [cite: 84]
+          Authorization: `Bearer ${token}`,
         },
       });
 
