@@ -28,6 +28,44 @@
     <section id="sideload-msg" class="ms-welcome__main">
         <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
     </section>
+    <body class="ms-font-m ms-welcome ms-Fabric">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Contoso" title="Contoso" />
+        <h1 class="ms-font-su">Welcome</h1>
+    </header>
+    <section id="sideload-msg" class="ms-welcome__main">
+        <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
+    </section>
+
+    <section id="login-body" class="ms-welcome__main" style="display: none;">
+        <h2 class="ms-font-xl">Sign In</h2>
+        <div style="margin-bottom: 15px; width: 80%;">
+            <label for="username" class="ms-font-m">Username:</label>
+            <input type="text" id="username" class="ms-TextField-field" style="width: 100%; padding: 5px;" />
+        </div>
+        <div style="margin-bottom: 15px; width: 80%;">
+            <label for="password" class="ms-font-m">Password:</label>
+            <input type="password" id="password" class="ms-TextField-field" style="width: 100%; padding: 5px;" />
+        </div>
+        <div role="button" id="login-btn" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label">Log In</span>
+        </div>
+        <p id="login-error" class="ms-font-m" style="color: red; display: none;">Invalid credentials.</p>
+    </section>
+
+    <main id="app-body" class="ms-welcome__main" style="display: none;">
+        <h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! [cite: 54, 55] </h2>
+        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
+        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label">Run</span>
+        </div>
+        <p><label id="item-subject"></label></p>
+        
+        <div role="button" id="logout-btn" class="ms-Button" style="margin-top: 20px;">
+            <span class="ms-Button-label">Log Out</span>
+        </div>
+    </main>
+</body>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
         <h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! </h2>
         <ul class="ms-List ms-welcome__features">
